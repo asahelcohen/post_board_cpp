@@ -27,8 +27,9 @@ namespace ariel
 
 	void addRows(vector<vector<char>> &board, unsigned int c, unsigned int r){
 		std::vector<char> temp(c, '_');	
-		for(unsigned int i = 0; i < r; i++)
+		for(unsigned int i = 0; i < r; i++){
 			board.emplace_back(temp);
+		}
 	}
 
 	void Board::post(unsigned int row, unsigned int column, Direction direction, std::string message)
@@ -38,18 +39,18 @@ namespace ariel
 		unsigned int c = maxC;
 		if (direction == Direction::Horizontal)
 		{
-			if (row >= maxR)
-				r = row + 1;
-			if ((column + message.size()) >= maxC)
-				c = column + message.size();
+			if (row >= maxR){
+				r = row + 1;}
+			if ((column + message.size()) >= maxC){
+				c = column + message.size();}
 				
 		}
 		else
 		{
-			if (column >= maxC)
-				c = column;
-			if ((row + message.size()) >= maxR)
-				r = row + message.size() +1;
+			if (column >= maxC){
+				c = column;}
+			if ((row + message.size()) >= maxR){
+				r = row + message.size() +1;}
 		}
 
 		if (r > maxR || c > maxC)
@@ -91,8 +92,9 @@ namespace ariel
 	{
 		string mess;
 		if (row > maxR || column > maxC){
-			for(int i = 0; i < length; i++)
+			for(int i = 0; i < length; i++){
 				mess += "_";
+			}
 		}
 		else
 		{
