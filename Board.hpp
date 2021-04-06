@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <vector>
 #include "Direction.hpp"
 
 namespace ariel
@@ -8,18 +9,18 @@ namespace ariel
     class Board
     {
     private:
-        // vector
-        // int maxH
-        // int maxV
+	    std::vector<std::vector<char>> board;
+        unsigned int maxR;
+        unsigned int maxC;
     public:
-        Board(){}
+        Board();
 
         void post(unsigned int row, unsigned int col, Direction direct, std::string message);
 
         std::string read(unsigned int row, unsigned int col, Direction direct, unsigned int length);
 
         void show();
-
-        ~Board(){}
+        
+        ~Board(){};
     };
 }

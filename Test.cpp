@@ -58,7 +58,7 @@ TEST_CASE("read basic")
 {
     CHECK(messageBoard.read(1, 0, Direction::Horizontal, 0) == "");
     CHECK(messageBoard.read(0, 0, Direction::Horizontal, 1) == "m");
-    CHECK(messageBoard.read(2, 3, Direction::Horizontal, 2) == "eb");
+    CHECK(messageBoard.read(2, 3, Direction::Horizontal, 2) == "_b");
     CHECK(messageBoard.read(0, 2, Direction::Horizontal, 4) == "ssag");
     CHECK(messageBoard.read(4, 7, Direction::Horizontal, 5) == "_o_o_");
     CHECK(messageBoard.read(0, 0, Direction::Horizontal, 7) == "message");
@@ -67,7 +67,7 @@ TEST_CASE("read basic")
     //vertical
     CHECK(messageBoard.read(1, 0, Direction::Vertical, 0) == "");
     CHECK(messageBoard.read(0, 0, Direction::Vertical, 1) == "m");
-    CHECK(messageBoard.read(2, 3, Direction::Vertical, 2) == "e_");
+    CHECK(messageBoard.read(2, 3, Direction::Vertical, 2) == "_e");
     CHECK(messageBoard.read(1, 8, Direction::Vertical, 4) == "itco");
     CHECK(messageBoard.read(0, 10, Direction::Vertical, 5) == "a_pro");
     CHECK(messageBoard.read(0, 8, Direction::Vertical, 7) == "bitcoin");
@@ -94,7 +94,7 @@ TEST_CASE("read after running over older posts")
     CHECK(messageBoard.read(2, 3, Direction::Horizontal, 2) == "nb");
     CHECK(messageBoard.read(0, 2, Direction::Horizontal, 4) == "sfag");
     CHECK(messageBoard.read(4, 7, Direction::Horizontal, 5) == "_i_o_");
-    CHECK(messageBoard.read(0, 0, Direction::Horizontal, 7) == "masfage");
+    CHECK(messageBoard.read(0, 0, Direction::Horizontal, 7) == "mesfage");
     CHECK(messageBoard.read(0, 0, Direction::Horizontal, 13) == "mesfage_rread");
 
     //vertical
@@ -127,12 +127,13 @@ TEST_CASE("post BIG letters,other symbols and numbers")
 TEST_CASE("read BIG letters, other symbols and numbers")
 {
     //horizontal
-    CHECK(messageBoard.read(13, 5, Direction::Horizontal, 5) == "t_WOrk");
+    CHECK(messageBoard.read(13, 5, Direction::Horizontal, 6) == "t_1Ork");
     CHECK(messageBoard.read(14, 1, Direction::Horizontal, 5) == "Wh$%1");
-    CHECK(messageBoard.read(8, 0, Direction::Horizontal, 9) == "*W____1Wi");
+    CHECK(messageBoard.read(8, 0, Direction::Horizontal, 9) == "&W____)pl");
 
     //vertical
-    CHECK(messageBoard.read(8, 7, Direction::Vertical, 8) == "pWh$%1W_");
-    CHECK(messageBoard.read(16, 2, Direction::Vertical, 7) == "@_______");
-    CHECK(messageBoard.read(0, 1, Direction::Vertical, 18) == "a_a___b__WORK2_W_#_");
+    CHECK(messageBoard.read(8, 7, Direction::Vertical, 8) == "pWh$%1__");
+    CHECK(messageBoard.read(16, 2, Direction::Vertical, 7) == "@______");
+    CHECK(messageBoard.read(0, 1, Direction::Vertical, 18) == "e_a___b__WORK2_W_#_");
+    messageBoard.show();
 }
