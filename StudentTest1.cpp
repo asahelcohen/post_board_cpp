@@ -42,6 +42,45 @@ string randString()
 	
 }
 
+// first of all we check a specific test
+TEST_CASE("read right specfic"){
+	ariel::Board b;
+	b.post(0, 0, HORI, "abc");
+	string sRead = b.read(0, 0, HORI, 4);
+
+	string sComp = "abc_";
+	for (size_t i = 0; i < 4; i++)
+	{
+		CHECK_EQ(sRead.at(i), sComp.at(i));
+	}
+	b.post(0, 5, HORI, "fghi ");
+	sRead = b.read(0, 0, HORI, 10);
+	sComp = "abc__fghi ";
+	for (size_t i = 0; i < 10; i++)
+	{
+		CHECK_EQ(sRead.at(i), sComp.at(i));
+	}
+
+	b.post(2, 1, VER, "shani");
+	sRead = b.read(0, 1, VER, 8);
+	sComp = "b_shani_";
+	for (size_t i = 0; i < 8; i++)
+	{
+		CHECK_EQ(sRead.at(i), sComp.at(i));
+	}
+
+	// to check drissa
+	b.post(4, 0, HORI, " u");
+	b.post(5, 0, HORI, "+v");
+	sRead = b.read(2, 1, VER, 4);
+	sComp = "shuv";
+	for (size_t i = 0; i < 4; i++)
+	{
+		CHECK_EQ(sRead.at(i), sComp.at(i));
+	}
+
+}
+
 TEST_CASE("read right random"){
 	ariel::Board b;
 
@@ -213,4 +252,11 @@ TEST_CASE("read right random"){
 		}
     }// end of for
 
+    // string srComp = b.read(rowSR, colSR, HORI, lengthS);
+    // string scComp = b.read(rowSC, colSC, VER, lengthS);
+    // for (size_t i = 0; i < lengthS; i++)
+    // {
+    //     CHECK_EQ(sr.at(i), srComp.at(i));
+    //     CHECK_EQ(sc.at(i), scComp.at(i));
+    // }
 }   
